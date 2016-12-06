@@ -5,7 +5,7 @@ import { ENV_TEST } from './constants';
 
 function main() {
   const validExpressions =
-    validExpressionsFromArgs(process['env'], process['argv']);
+    validExpressionsFromArgs(console, process['env'], process['argv']);
 
   if (validExpressions) {
     process['exit'](0);
