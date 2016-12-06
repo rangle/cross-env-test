@@ -9,14 +9,21 @@ import {
 } from './expression';
 const flags = [ FLAG_OR ];
 
-export function validExpressionsFromArgs(env: Environment, argv: string[]) {
-  const areEnvVarsValid = reduceExpressions.bind(null, console, env);
+export function usage(logger: Console) {
+  /* tslint:disable:no-string-literal */
+  logger.log('');
+  logger.log(`Usage: ${process['argv'][1]} ENV_VAR=value`);
+  logger.log(`Usage: ${process['argv'][1]} ENV_VAR1=value ENV_VAR2=other`);
+}
+
+export function validExpressionsFromArgs(
+  logger: Console, env: Environment, argv: string[]
+) {
+  const areEnvVarsValid = reduceExpressions.bind(null, logger, env);
   const args = sliceArgsFromArgsv(argv);
 
   if (args.length === 0) {
-    console.log('');
-    console.log(`Usage: ${process['argv'][1]} ENV_VAR=value`);
-    console.log(`Usage: ${process['argv'][1]} ENV_VAR1=value ENV_VAR2=other`);
+    usage(logger);
     return false;
   }
 

@@ -24,7 +24,7 @@ describe('cross-env-test functions', () => {
 
   describe('validExpressionsFromArgs function', () => {
     it('should return false if given an invalid arg', () => {
-      expect(validExpressionsFromArgs({}, [
+      expect(validExpressionsFromArgs(console, {}, [
         'node',
         'path',
         'something=something=fail'
@@ -32,7 +32,7 @@ describe('cross-env-test functions', () => {
     });
 
     it('should return false if given a valid arg that is false', () => {
-      expect(validExpressionsFromArgs({}, [
+      expect(validExpressionsFromArgs(console, {}, [
         'node',
         'path',
         'something=something'
@@ -40,7 +40,7 @@ describe('cross-env-test functions', () => {
     });
 
     it('should return true if given a valid arg that is true', () => {
-      expect(validExpressionsFromArgs({ something: 'something' }, [
+      expect(validExpressionsFromArgs(console, { something: 'something' }, [
         'node',
         'path',
         'something=something'
@@ -48,7 +48,7 @@ describe('cross-env-test functions', () => {
     });
 
     it('should return false if there are no arguments', () => {
-      expect(validExpressionsFromArgs({ something: 'something' }, [
+      expect(validExpressionsFromArgs(console, { something: 'something' }, [
         'node',
         'path',
       ])).to.equal(false);
