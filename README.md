@@ -6,7 +6,7 @@ Test an environment variable for equality
 cross-env-test NODE_ENV=testing
 ```
 
-will bascially do a 
+will basically do a 
 
 ```
 if (process.env.NODE_ENV === 'testing') {
@@ -59,6 +59,8 @@ Sometimes it's advantages to only run certain npm scripts _sometimes_.  For exam
 - environment variable _must_ be on the left hand side of the operator
 - arguments not in the form of `lh=rh` or `lh!=rh` will cause the program to exit with an error code
 - chained arguments are implicitly `&&`ed together
-- there is a `--or` flag that will change the implicit and
+- if there is interest we can add a `--or` modifier
 
+## License
 
+[MIT](./LICENSE "MIT License")
