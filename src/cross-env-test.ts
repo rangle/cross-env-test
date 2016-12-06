@@ -12,6 +12,14 @@ const flags = [ FLAG_OR ];
 export function validExpressionsFromArgs(env: Environment, argv: string[]) {
   const areEnvVarsValid = reduceExpressions.bind(null, console, env);
   const args = sliceArgsFromArgsv(argv);
+
+  if (args.length === 0) {
+    console.log('');
+    console.log(`Usage: ${process['argv'][1]} ENV_VAR=value`);
+    console.log(`Usage: ${process['argv'][1]} ENV_VAR1=value ENV_VAR2=other`);
+    return false;
+  }
+
   const expressions = filterFlags(flags, args)
     .map(parseExpression);
 

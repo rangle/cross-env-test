@@ -46,5 +46,12 @@ describe('cross-env-test functions', () => {
         'something=something'
       ])).to.equal(true);
     });
+
+    it('should return false if there are no arguments', () => {
+      expect(validExpressionsFromArgs({ something: 'something' }, [
+        'node',
+        'path',
+      ])).to.equal(false);
+    });
   });
 });
