@@ -4,11 +4,11 @@ machine:
 
 dependencies:
   pre:
-    - npm install yarn@0.16.1
+    - npm install -g yarn@0.16.1
   override:
-    - ./node_modules/.bin/yarn install
+    - yarn install
 
 test:
   override:
-    - ./node_modules/.bin/yarn test
+    - yarn test
 
