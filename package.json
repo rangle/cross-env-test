@@ -1,0 +1,69 @@
+{
+  "name": "cross-env-test",
+  "version": "0.0.1",
+  "description": "Test environment variables across operating system environments",
+  "main": "index.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "prebuild": "npm run clean && npm run test",
+    "build": "npm run rollup && npm run compile && npm run copy:templates",
+    "clean": "npm run clean:coverage && rimraf ./dist && rimraf ./ts && rimraf ./tmp",
+    "clean:coverage": "rimraf ./coverage",
+    "copy:templates": "ncp ./src/templates ./dist/templates",
+    "compile": "node ./compile",
+    "cover": "istanbul report --include ./ts/coverage.json",
+    "premocha": "npm run tsc",
+    "lint": "tslint ./src/**/*.ts",
+    "mocha": "mocha ts/**/*.js",
+    "mocha:w": "mocha -w ts/**/*.js",
+    "pretest": "npm run clean && npm run premocha && npm run lint",
+    "test": "istanbul cover _mocha -- -R spec ts/**/*.js",
+    "posttest": "npm run remap-istanbul && npm run clean:coverage && npm run cover",
+    "pretest:w": "npm run clean && npm run tsc",
+    "remap-istanbul": "remap-istanbul -i ./coverage/coverage.json -o ./ts/coverage.json",
+    "rollup": "rollup -c",
+    "test:w": "concurrently \"npm run mocha:w\" \"npm run tsc:w\"",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rangle/cross-env-test.git"
+  },
+  "keywords": [
+    "cross",
+    "platform",
+    "environment",
+    "variable",
+    "test",
+    "condition",
+    "npm",
+    "scripts"
+  ],
+  "author": "Rangle.io",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rangle/cross-env-test/issues"
+  },
+  "homepage": "https://github.com/rangle/cross-env-test#readme",
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.33",
+    "@types/node": "0.0.2",
+    "chai": "^3.5.0",
+    "concurrently": "^3.1.0",
+    "google-closure-compiler-js": "^20161024.0.0",
+    "istanbul": "^0.4.5",
+    "mkdirp": "^0.5.1",
+    "mocha": "^3.2.0",
+    "ncp": "^2.0.0",
+    "remap-istanbul": "^0.7.0",
+    "rimraf": "^2.5.4",
+    "rollup": "^0.36.4",
+    "rollup-plugin-typescript": "^0.8.1",
+    "tslint": "^4.0.2",
+    "typescript": "^2.0.10"
+  }
+}
