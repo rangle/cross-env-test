@@ -1,25 +1,5 @@
 # cross-env-test
 
-Test an environment variable for equality
-
-```
-cross-env-test NODE_ENV=testing
-```
-
-will basically do a 
-
-```
-if (process.env.NODE_ENV === 'testing') {
-  process.exit(0);
-} else {
-  process.exit(1);
-}
-
-```
-
-
-# cross-env-test
-
 This command line tool works on *NIX (including OS X) and Windows.  This tool checks to see if an environment variable is set to a given value:
 
 
@@ -43,11 +23,13 @@ if (process.env.NODE_ENV === 'testing') {
 Usage
 I use this in my npm scripts:
 
+```js
 {
   "scripts": {
-    "postinstall": "cross-env-test NODE_ENV!=testing && npm run build"
+    "postinstall": "cross-env-test NODE_ENV=testing || npm run build"
   }
 }
+```
 
 ## Why?
 
