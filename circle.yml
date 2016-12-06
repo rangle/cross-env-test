@@ -4,9 +4,11 @@ machine:
 
 dependencies:
   pre:
-    # Clean out node-modules to prevent issues with circle-ci's caching.
-    - rm -rf node_modules
+    - npm install -g yarn@0.16.1
+  override:
+    - yarn install
 
-general:
-  artifacts:
-    - "./coverage/lcov-report/"
+test:
+  override:
+    - yarn test
+

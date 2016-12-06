@@ -5,6 +5,7 @@ tmp/
 ts/
 .gitignore
 CODE_OF_CONDUCT.md
+circle.yml
 compile.js
 rollup.config.js
 tsconfig.json
